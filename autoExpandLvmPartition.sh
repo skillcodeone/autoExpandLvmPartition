@@ -1,23 +1,32 @@
 #!/bin/bash
 #rescan increased existing disk size or new disk
 printf "Scanning for increased existing disk size or new disks...\n"
-dmesg -n 1
-sysctl -p > /dev/null
+echo "- - -" > /sys/class/scsi_host/host0/scan;
+echo "- - -" > /sys/class/scsi_host/host1/scan;
+echo "- - -" > /sys/class/scsi_host/host2/scan;
+
 #sda
-echo "- - -" > /sys/class/scsi_host/host0/scan
-partprobe /dev/sda 2> /dev/null
-partx -u /dev/sda 2> /dev/null
-echo 1 > /sys/class/block/sda/device/rescan
+DIR_SDA="/sys/block/sda"
+if [ -d "$DIR_SDA" ]; then
+  partprobe /dev/sda 2> /dev/null;
+        partx -u /dev/sda 2> /dev/null;
+        echo 1 > /sys/class/block/sda/device/rescan;
+fi
 #sdb
-echo "- - -" > /sys/class/scsi_host/host1/scan
-partprobe /dev/sdb 2> /dev/null
-partx -u /dev/sdb 2> /dev/null
-echo 1 > /sys/class/block/sdb/device/rescan
+DIR_SDB="/sys/block/sdb"
+if [ -d "$DIR_SDB" ]; then
+  partprobe /dev/sdb 2> /dev/null;
+        partx -u /dev/sdb 2> /dev/null;
+        echo 1 > /sys/class/block/sdb/device/rescan;
+fi
 #sdc
-echo "- - -" > /sys/class/scsi_host/host2/scan
-partprobe /dev/sdc 2> /dev/null
-partx -u /dev/sdc 2> /dev/null
-echo 1 > /sys/class/block/sdc/device/rescan
+DIR_SDC="/sys/block/sdc"
+if [ -d "$DIR_SDC" ]; then
+  partprobe /dev/sdc 2> /dev/null;
+        partx -u /dev/sdc 2> /dev/null;
+        echo 1 > /sys/class/block/sdc/device/rescan;
+fi
+
 #retrive data about sda partitions
 LAST_SDA=`lsblk -l --output NAME,SIZE 2> /dev/null | grep sda | awk '{ print $1}' |  sed s/sda// | sed -n '$p'`
 SDA=`lsblk -l --output NAME,SIZE 2> /dev/null | grep sda | awk '{ print $2}' | sed s/G// | sed -n '1p'`
