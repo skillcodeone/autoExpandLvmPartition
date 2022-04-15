@@ -12,4 +12,4 @@ Automatically the script does:
 - Extends Volume group and the root Logical Volume
 - Does xfs_growfs on root partition
 
-![image](https://user-images.githubusercontent.com/47394256/163583448-f3b2e32b-4d0a-49e8-9636-6c416b9acdc3.png)
+![image](https://user-images.githubusercontent.com/47394256/163584550-46f06e27-2002-414e-b20d-258dfc963db0.png)
