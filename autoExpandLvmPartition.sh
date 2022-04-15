@@ -13,7 +13,7 @@ LV=`lvs | grep root | awk {'print$1'}`
 
 function expandLvm ()
 {
-DEV="${1}" # $1 represent first argument
+DEV="${1}"
 #rescan device
 DEV_PATH="/sys/block/sd"$DEV
 if [ -d "$DEV_PATH" ]; then
