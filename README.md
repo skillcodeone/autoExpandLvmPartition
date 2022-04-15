@@ -9,5 +9,5 @@ Automatically the script does:
 - Detects root Logical Volume name and Volume Group name
 - Create the relative LVM partition with fdisk command on the corrent dev/sdX
 - Create phisical volume from dev/sdX
-- Expands Volume group and extend Logical Volume
+- Extends Volume group and the root Logical Volume
 - Does xfs_growfs on root partition
