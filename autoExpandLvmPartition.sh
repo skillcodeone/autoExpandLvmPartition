@@ -44,7 +44,7 @@ fi
 
 #main for sdX
 if [ "$TOT_DEV" -eq "$SUM_DEV" ]; then
-        echo "Expand LVM partition not necesssary for sd"$DEV;
+        echo "Expand LVM partition not necessary for sd"$DEV;
 else
         echo "Trying to create a new partition sd"$DEV$NEW_DEV"...";
                 if [ $NEW_DEV -eq "1" ]; then
